@@ -233,7 +233,7 @@ function render(template) {
 
     return function rootsGen(ddl) {
       for(; templateIterIndex < template.length; templateIterIndex++) {
-        if(ddl.timeRemaining() < 1) {
+        if(ddl.timeRemaining() < 10) {
           break
         } 
         status = status(template[templateIterIndex])
@@ -243,7 +243,7 @@ function render(template) {
         status = null
       }
 
-      let cnt = 100
+      let cnt = 1000
 
       while(!ddl.didTimeout && cnt--) {
         if(currentRoot.dom) {
@@ -263,8 +263,6 @@ function render(template) {
           } else if(currentRoot.preSibling && !currentRoot.preSibling.dom) {
             currentRoot = currentRoot.preSibling
           }
-        } else {
-          console.log(currentRoot)
         }
       }
 
